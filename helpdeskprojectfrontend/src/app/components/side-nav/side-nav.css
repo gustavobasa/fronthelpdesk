@@ -1,0 +1,127 @@
+/* Faz o container principal ocupar 100% da tela */
+.container-principal {
+    height: 100vh;
+    width: 100vw;
+    background-color: #1a1c1e;
+}
+
+/* Estilos do Sidenav (menu lateral) */
+.sidenav {
+    width: 250px;
+    background-color: #303030;
+    border-right: 1px solid #eee;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.05);
+}
+
+/* Container do Logo no topo do Sidenav */
+.logo-container {
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 1px solid #cecece;
+}
+
+.logo-container mat-icon {
+    height: 30px;
+    width: 40px;
+}
+
+.sidenav {
+    border-radius: 0px 4px 4px 0px;
+    border-right: 1px solid #cecece;
+}
+
+.logo-icon {
+    font-size: 32px;
+    margin-right: 12px;
+    color: #cecece;
+}
+
+.logo-text {
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: #ffffff;
+
+}
+
+/* Estilizando cada item do menu */
+.nav-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 0 20px;
+    height: 50px;
+    /* Adicionar uma altura fixa pode ajudar também */
+    color: #ffffff;
+}
+
+.nav-item:hover {
+    border-radius: 4px;
+    background-color: #cecece;
+    color: #000;
+}
+
+.nav-item span {
+    margin: 0;
+    padding: 0;
+    color: #ffffff;
+    margin-bottom: 10px;
+}
+
+.mat-drawer-inner-container {
+    border-right: solid 1px #cecece;
+}
+
+.nav-item mat-icon {
+    margin-right: 12px;
+    color: #cecece;
+    border-radius: 4px;
+    padding: 0;
+}
+
+
+.nav-item:hover mat-icon {
+    color: #ffffff;
+}
+
+/* Estilos da Toolbar (barra do topo) */
+.toolbar {
+    background-color: #303030;
+    color: #eee;
+    height: 71px;
+    border-bottom: 1px solid #cecece;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* --- CORREÇÃO --- */
+
+/* 1. Define a cor das LINHAS do ícone */
+.toolbar mat-icon {
+    color: #ffffff;
+    /* Linhas brancas (como você colocou) */
+}
+
+/* 2. Remove o fundo do BOTÃO */
+.toolbar button {
+    background-color: transparent;
+    border-radius: 30%;
+    margin: 3px;
+}
+
+
+.toolbar button:hover {
+    background-color: #cecece;
+}
+
+/* Container do conteúdo da página */
+.conteudo-principal {
+    background-color: #4c4c4d;
+}
+
+.pagina {
+    color: #eee;
+}
+
+.pagina {
+    padding: 30px;
+}

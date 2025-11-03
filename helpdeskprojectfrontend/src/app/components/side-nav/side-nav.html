@@ -1,0 +1,49 @@
+<mat-drawer-container class="container-principal" autosize>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    
+    <mat-drawer #drawer class="sidenav" mode="side" [opened]="true">
+
+        <mat-nav-list class="container-item">
+            
+            <a mat-list-item [routerLink]="['/dashboard/home']" class="nav-item">
+                <mat-icon>home</mat-icon>
+                <span>Home</span>
+            </a>
+
+            <a mat-list-item [routerLink]="['/dashboard/tecnico']" class="nav-item">
+                <mat-icon>support_agent</mat-icon>
+                <span>Técnico</span>
+            </a>
+
+            <a mat-list-item [routerLink]="['/dashboard/cliente']" class="nav-item">
+                <mat-icon>person</mat-icon>
+                <span>Cliente</span>
+            </a>
+
+            <a mat-list-item href="https://github.com" target="_blank" class="nav-item">
+                <mat-icon>folder_code</mat-icon>
+                <span>Github</span>
+            </a>
+
+            <a mat-list-item href="#" class="nav-item">
+                <mat-icon>code</mat-icon> <span>Gustavo Barros</span>
+            </a>
+        </mat-nav-list>
+
+    </mat-drawer>
+
+    <mat-drawer-content class="conteudo-principal">
+
+        <mat-toolbar color="primary" class="toolbar">
+            <button mat-icon-button (click)="drawer.toggle()">
+                <mat-icon>menu</mat-icon>
+            </button>
+            <span>Helpdesk</span>
+        </mat-toolbar>
+
+        <div style="padding: 20px;">
+             <router-outlet></router-outlet>
+        </div>
+        </mat-drawer-content>
+
+</mat-drawer-container>
