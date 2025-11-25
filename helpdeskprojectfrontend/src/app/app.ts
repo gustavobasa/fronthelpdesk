@@ -1,20 +1,11 @@
-import { Component, signal } from '@angular/core';
-// 💡 MUDANÇA: Importe o RouterOutlet para habilitar o roteamento no template.
-import { RouterOutlet } from '@angular/router'; 
-// import { Login } from './components/login/login'; // Não precisa mais importar o Login aqui
+import { Component } from '@angular/core';
+import { RouterOutlet, provideRouter } from '@angular/router';
+import { routes } from './app.routes';
 
 @Component({
-  standalone: true,
   selector: 'app-root',
-  // 💡 MUDANÇA: Substitua o 'Login' pelo 'RouterOutlet'
-  imports: [RouterOutlet], 
-  template: `
-    <!-- 💡 CORREÇÃO: Esta tag agora injeta o componente correspondente à URL,
-        seja o Login (para '/login') ou o SideNav (para '/main'). -->
-    <router-outlet></router-outlet> 
-  `,
-  styles: [],
+  standalone: true,
+  imports: [RouterOutlet],
+  template: `<router-outlet></router-outlet>`,
 })
-export class App {
-  protected readonly title = signal('helpdeskprojectfrontend');
-}
+export class App {}
