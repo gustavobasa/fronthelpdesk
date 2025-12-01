@@ -1,0 +1,50 @@
+<div class="container">
+  <h1>Atualizar Chamado</h1>
+
+  <form class="form">
+    <mat-form-field class="full-width">
+      <mat-label>Título</mat-label>
+      <input matInput [(ngModel)]="chamado.titulo" name="titulo">
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>Observações</mat-label>
+      <textarea matInput [(ngModel)]="chamado.observacoes" name="observacoes"></textarea>
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>Técnico</mat-label>
+      <mat-select [(ngModel)]="chamado.tecnico" name="tecnico">
+        <mat-option *ngFor="let t of tecnicos" [value]="t.id">{{t.nome}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>Cliente</mat-label>
+      <mat-select [(ngModel)]="chamado.cliente" name="cliente">
+        <mat-option *ngFor="let c of clientes" [value]="c.id">{{c.nome}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>Prioridade</mat-label>
+      <mat-select [(ngModel)]="chamado.prioridade" name="prioridade">
+        <mat-option [value]="0">BAIXA</mat-option>
+        <mat-option [value]="1">MÉDIA</mat-option>
+        <mat-option [value]="2">ALTA</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>Status</mat-label>
+      <mat-select [(ngModel)]="chamado.status" name="status">
+        <mat-option [value]="0">ABERTO</mat-option>
+        <mat-option [value]="1">EM ANDAMENTO</mat-option>
+        <mat-option [value]="2">ENCERRADO</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <button type="button" (click)="update()" mat-raised-button color="primary" class="full-width">Salvar Alterações</button>
+    <button type="button" [routerLink]="['/main/chamado']" mat-stroked-button class="full-width">Cancelar</button>
+  </form>
+</div>

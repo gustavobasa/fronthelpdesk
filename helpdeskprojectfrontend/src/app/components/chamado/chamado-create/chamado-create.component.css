@@ -1,0 +1,56 @@
+.container {
+    /* Largura fixa centralizada (padrão 40rem) */
+    width: 40rem;
+    margin: 2rem auto; /* Adicionei margem superior/inferior para centralizar na tela */
+    padding: 2rem;
+    
+    /* Fundo branco e borda arredondada (mat-elevation-z8 no HTML cuida da sombra) */
+    background-color: #fff;
+    border-radius: 10px;
+}
+
+.full-width {
+    width: 100%;
+}
+
+h1 {
+    text-align: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+.perfis {
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: center;
+}
+
+.margem {
+    margin: 0 1rem;
+}
+
+button {
+    margin-bottom: 1rem;
+}
+
+/* Garante o espaçamento dos campos do Material, que não está no seu CSS */
+mat-form-field {
+    margin-bottom: 1rem;
+}
+
+/* Sobrescreve a cor de fundo dos inputs do Material */
+.mat-form-field-wrapper {
+    /* Define o fundo da caixa de input como branco (hex #FFF) */
+    --mat-form-field-container-background-color: #fff !important; 
+    
+    /* Nota: Se o seu input for appearance="fill", use: */
+    /* --mat-form-field-container-background-color: #fff !important; */
+}
+
+/* Regra extra para garantir que a área interna do input seja branca */
+.mat-form-field-appearance-outline .mat-form-field-flex {
+    background-color: white !important;
+}

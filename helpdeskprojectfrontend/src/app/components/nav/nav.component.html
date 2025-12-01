@@ -1,7 +1,5 @@
 <mat-sidenav-container class="container-principal" autosize>
 
-    <!-- TROCAMOS <mat-drawer> POR <mat-sidenav> AQUI -->
-    <!-- Adicionei fixedInViewport="true" que é uma propriedade do Sidenav -->
     <mat-sidenav #drawer class="sidenav" mode="side" [opened]="true" fixedInViewport="true">
         
         <mat-nav-list class="container-item">
@@ -26,6 +24,11 @@
                 <span>Cliente</span>
             </a>
 
+            <a mat-list-item [routerLink]="['/main/chamado']" routerLinkActive="active-link" class="nav-item">
+                <mat-icon>assignment</mat-icon>
+                <span>Chamados</span>
+            </a>
+
             <a mat-list-item href="https://github.com" target="_blank" class="nav-item">
                 <mat-icon>folder_code</mat-icon>
                 <span>Github</span>
@@ -35,20 +38,19 @@
                 <mat-icon>code</mat-icon>
                 <span>Gustavo Barros</span>
             </a>
-
+            
         </mat-nav-list>
+
     </mat-sidenav>
 
-    <!-- TROCAMOS <mat-drawer-content> POR <mat-sidenav-content> -->
     <mat-sidenav-content class="conteudo-principal">
-        
-        <!-- Agora o 'drawer' é do tipo Sidenav, então o erro vai sumir -->
+
         <app-header [drawer]="drawer"></app-header>
 
         <div style="padding: 20px;">
             <router-outlet></router-outlet>
         </div>
-        
+
     </mat-sidenav-content>
 
 </mat-sidenav-container>

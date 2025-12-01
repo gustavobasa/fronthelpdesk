@@ -1,0 +1,18 @@
+<div class="container">
+  <h1>Remover Chamado</h1>
+
+  <form class="form">
+    <mat-form-field class="full-width">
+      <mat-label>Título</mat-label>
+      <input matInput [disabled]="true" [(ngModel)]="chamado.titulo" name="titulo">
+    </mat-form-field>
+
+    <mat-form-field class="full-width">
+      <mat-label>Observações</mat-label>
+      <textarea matInput [disabled]="true" [(ngModel)]="chamado.observacoes" name="observacoes"></textarea>
+    </mat-form-field>
+
+    <button type="button" (click)="delete()" mat-raised-button color="warn" class="full-width">CONFIRMAR REMOÇÃO</button>
+    <button type="button" [routerLink]="['/main/chamado']" mat-stroked-button class="full-width">Cancelar</button>
+  </form>
+</div>

@@ -1,0 +1,72 @@
+<div class="container mat-elevation-z8">
+    <h1 class="full-width">Abrir Chamado</h1>
+
+    <form (ngSubmit)="create()" class="form" autocomplete="off"> 
+
+        <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Título</mat-label>
+            <input matInput required placeholder="Ex. Falha no Servidor" name="titulo" [(ngModel)]="chamado.titulo">
+            <mat-icon matSuffix>title</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Observações</mat-label>
+            <textarea matInput required placeholder="Descreva o problema aqui..." name="observacoes" [(ngModel)]="chamado.observacoes" rows="4"></textarea>
+            <mat-icon matSuffix>description</mat-icon>
+        </mat-form-field>
+        
+        <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Prioridade</mat-label>
+            <mat-select required name="prioridade" [(ngModel)]="chamado.prioridade">
+                <mat-option [value]="0">BAIXA</mat-option>
+                <mat-option [value]="1">MÉDIA</mat-option>
+                <mat-option [value]="2">ALTA</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Status</mat-label>
+            <mat-select required name="status" [(ngModel)]="chamado.status">
+                <mat-option [value]="0">ABERTO</mat-option>
+                <mat-option [value]="1">EM ANDAMENTO</mat-option>
+                <mat-option [value]="2">ENCERRADO</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Cliente</mat-label>
+            <mat-select required name="cliente" [(ngModel)]="chamado.cliente">
+                <mat-option *ngFor="let c of clientes" [value]="c.id">
+                    {{ c.nome }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Técnico</mat-label>
+            <mat-select required name="tecnico" [(ngModel)]="chamado.tecnico">
+                <mat-option *ngFor="let t of tecnicos" [value]="t.id">
+                    {{ t.nome }}
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <button
+            type="submit" 
+            mat-raised-button
+            color="primary"
+            class="full-width mat-elevation-z4">
+            Criar Chamado
+        </button>
+
+        <button
+            type="button"
+            [routerLink]="['/main/chamado']"
+            mat-stroked-button
+            color="warn"
+            class="full-width mat-elevation-z4">
+            Cancelar
+        </button>
+
+    </form>
+</div>
