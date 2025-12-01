@@ -1,0 +1,53 @@
+<div class="container mat-elevation-z8">
+    <h1 class="full-width">Criar Cliente</h1>
+
+    <form class="form">
+
+        <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Nome</mat-label>
+            <input matInput [formControl]="nome" required placeholder="Ex. Maria da Silva" name="nome" [(ngModel)]="cliente.nome">
+            <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field class="full-width" appearance="outline">
+            <mat-label>CPF</mat-label>
+            <input matInput [formControl]="cpf" required placeholder="Ex. 123.456.789-00" name="cpf" [(ngModel)]="cliente.cpf">
+            <mat-icon matSuffix>pin</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field class="full-width" appearance="outline">
+            <mat-label>E-mail</mat-label>
+            <input matInput [formControl]="email" required placeholder="Ex. email@dominio.com" name="email" [(ngModel)]="cliente.email">
+            <mat-icon matSuffix>email</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Senha</mat-label>
+            <input matInput [formControl]="senha" required type="password" name="senha" [(ngModel)]="cliente.senha">
+            <mat-icon matSuffix>password</mat-icon>
+        </mat-form-field>
+
+
+        <!-- CONFIRMAR -->
+        <button
+            type="button"
+            (click)="create()"
+            [disabled]="!validaCampos()"
+            mat-raised-button
+            color="primary"
+            class="full-width mat-elevation-z4">
+            Cadastrar
+        </button>
+
+        <!-- CANCELAR -->
+        <button
+            type="button"
+            [routerLink]="['/main/cliente']"
+            mat-stroked-button
+            color="warn"
+            class="full-width mat-elevation-z4">
+            Cancelar
+        </button>
+
+    </form>
+</div>

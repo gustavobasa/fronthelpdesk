@@ -1,0 +1,64 @@
+<div class="container mat-elevation-z8">
+    <h1 class="full-width">Atualizar Cliente</h1>
+
+    <form class="form">
+
+        <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Nome</mat-label>
+            <input matInput [formControl]="nome" required name="nome" [(ngModel)]="cliente.nome">
+            <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field class="full-width" appearance="outline">
+            <mat-label>CPF</mat-label>
+            <input matInput [formControl]="cpf" required name="cpf" [(ngModel)]="cliente.cpf">
+            <mat-icon matSuffix>pin</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field class="full-width" appearance="outline">
+            <mat-label>E-mail</mat-label>
+            <input matInput [formControl]="email" required name="email" [(ngModel)]="cliente.email">
+            <mat-icon matSuffix>email</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Senha</mat-label>
+            <input 
+                matInput 
+                [formControl]="senha" 
+                type="password" 
+                name="senha" 
+                [(ngModel)]="cliente.senha" 
+                placeholder="Preencha apenas se quiser alterar">
+            <mat-icon matSuffix>password</mat-icon>
+        </mat-form-field>
+
+        <div class="perfis">
+            <mat-checkbox (change)="addPerfil(1)" class="margem" [checked]="true">
+                CLIENTE
+            </mat-checkbox>
+        </div>
+
+        <!-- BOTÃO SALVAR (corrigido) -->
+        <button
+            type="button"
+            (click)="update()"
+            [disabled]="!validaCampos()"
+            mat-raised-button
+            color="primary"
+            class="full-width mat-elevation-z4">
+            Salvar Alterações
+        </button>
+
+        <!-- BOTÃO CANCELAR (corrigido) -->
+        <button
+            type="button"
+            [routerLink]="['/main/cliente']"
+            mat-stroked-button
+            color="warn"
+            class="full-width mat-elevation-z4">
+            Cancelar
+        </button>
+
+    </form>
+</div>

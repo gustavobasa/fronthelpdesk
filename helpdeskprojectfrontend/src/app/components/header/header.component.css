@@ -1,0 +1,27 @@
+.header {
+    background-color: #303030; /* Fundo escuro */
+    color: #eee;
+    height: 71px;
+    border-bottom: 1px solid #cecece;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.logo-text {
+    margin-left: 1rem;
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.spacer {
+    flex: 1 1 auto; /* Empurra o logout para a direita */
+}
+
+/* Garante que os ícones fiquem brancos */
+mat-icon {
+    color: #ffffff;
+}
+
+/* Efeito Hover nos botões */
+button:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}

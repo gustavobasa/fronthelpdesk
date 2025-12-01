@@ -1,19 +1,27 @@
-<mat-drawer-container class="container-principal" autosize>
+<mat-sidenav-container class="container-principal" autosize>
 
-    <mat-drawer #drawer class="sidenav" mode="side" [opened]="true">
+    <!-- TROCAMOS <mat-drawer> POR <mat-sidenav> AQUI -->
+    <!-- Adicionei fixedInViewport="true" que é uma propriedade do Sidenav -->
+    <mat-sidenav #drawer class="sidenav" mode="side" [opened]="true" fixedInViewport="true">
+        
         <mat-nav-list class="container-item">
 
-            <a mat-list-item [routerLink]="['/main/home']" class="nav-item">
+            <div class="logo-container">
+                 <mat-icon class="logo-icon">dns</mat-icon>
+                 <span class="logo-text">HelpDesk</span>
+            </div>
+
+            <a mat-list-item [routerLink]="['/main/home']" routerLinkActive="active-link" class="nav-item">
                 <mat-icon>home</mat-icon>
                 <span>Home</span>
             </a>
 
-            <a mat-list-item [routerLink]="['/main/tecnico']" class="nav-item">
+            <a mat-list-item [routerLink]="['/main/tecnico']" routerLinkActive="active-link" class="nav-item">
                 <mat-icon>support_agent</mat-icon>
                 <span>Técnico</span>
             </a>
 
-            <a mat-list-item [routerLink]="['/main/cliente']" class="nav-item">
+            <a mat-list-item [routerLink]="['/main/cliente']" routerLinkActive="active-link" class="nav-item">
                 <mat-icon>person</mat-icon>
                 <span>Cliente</span>
             </a>
@@ -23,25 +31,24 @@
                 <span>Github</span>
             </a>
 
-            <a mat-list-item href="#" class="nav-item">
+            <a mat-list-item href="https://www.instagram.com/gustavobasa_/" target="_blank" class="nav-item">
                 <mat-icon>code</mat-icon>
                 <span>Gustavo Barros</span>
             </a>
 
         </mat-nav-list>
-    </mat-drawer>
+    </mat-sidenav>
 
-    <mat-drawer-content class="conteudo-principal">
-        <mat-toolbar color="primary" class="toolbar">
-            <button mat-icon-button (click)="drawer.toggle()">
-                <mat-icon>menu</mat-icon>
-            </button>
-            <span>Helpdesk</span>
-        </mat-toolbar>
+    <!-- TROCAMOS <mat-drawer-content> POR <mat-sidenav-content> -->
+    <mat-sidenav-content class="conteudo-principal">
+        
+        <!-- Agora o 'drawer' é do tipo Sidenav, então o erro vai sumir -->
+        <app-header [drawer]="drawer"></app-header>
 
         <div style="padding: 20px;">
             <router-outlet></router-outlet>
         </div>
-    </mat-drawer-content>
+        
+    </mat-sidenav-content>
 
-</mat-drawer-container>
+</mat-sidenav-container>

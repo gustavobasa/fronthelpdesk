@@ -1,0 +1,17 @@
+<mat-toolbar class="header">
+    
+    <!-- Botão Menu: Chama o toggle do drawer recebido via Input -->
+    <button mat-icon-button (click)="drawer.toggle()" matTooltip="Alternar Menu">
+        <mat-icon>menu</mat-icon>
+    </button>
+
+    <span class="logo-text">HelpDesk</span>
+
+    <span class="spacer"></span>
+
+    <!-- Botão Logout -->
+    <button mat-icon-button (click)="logout()" matTooltip="Sair">
+        <mat-icon>logout</mat-icon>
+    </button>
+    
+</mat-toolbar>

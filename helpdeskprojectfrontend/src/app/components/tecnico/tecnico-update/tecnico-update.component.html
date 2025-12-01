@@ -1,0 +1,64 @@
+<div class="container mat-elevation-z8">
+    <h1 class="full-width">Atualizar Técnico</h1>
+
+    <form class="form">
+
+        <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Nome</mat-label>
+            <input matInput [formControl]="nome" required name="nome" [(ngModel)]="tecnico.nome">
+            <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field class="full-width" appearance="outline">
+            <mat-label>CPF</mat-label>
+            <input matInput [formControl]="cpf" required name="cpf" [(ngModel)]="tecnico.cpf">
+            <mat-icon matSuffix>pin</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field class="full-width" appearance="outline">
+            <mat-label>E-mail</mat-label>
+            <input matInput [formControl]="email" required name="email" [(ngModel)]="tecnico.email">
+            <mat-icon matSuffix>email</mat-icon>
+        </mat-form-field>
+
+        <mat-form-field class="full-width" appearance="outline">
+            <mat-label>Senha</mat-label>
+            <input 
+                matInput
+                [formControl]="senha"
+                type="password"
+                name="senha"
+                [(ngModel)]="tecnico.senha"
+                placeholder="Preencha apenas se quiser alterar">
+            <mat-icon matSuffix>password</mat-icon>
+        </mat-form-field>
+
+        <div class="perfis">
+            <mat-checkbox (change)="addPerfil(0)" class="margem" [checked]="tecnico.perfis.includes('0')">ADMIN</mat-checkbox>
+            <mat-checkbox (change)="addPerfil(1)" class="margem" [checked]="tecnico.perfis.includes('1')">CLIENTE</mat-checkbox>
+            <mat-checkbox (change)="addPerfil(2)" class="margem" [checked]="tecnico.perfis.includes('2')">TÉCNICO</mat-checkbox>
+        </div>
+
+        <!-- BOTÃO SALVAR (type="button" para evitar submit) -->
+        <button
+            type="button"
+            (click)="update()"
+            [disabled]="!validaCampos()"
+            mat-raised-button
+            color="primary"
+            class="full-width mat-elevation-z4">
+            Salvar Alterações
+        </button>
+
+        <!-- BOTÃO CANCELAR (type="button" + routerLink correto) -->
+        <button
+            type="button"
+            [routerLink]="['/main/tecnico']"
+            mat-stroked-button
+            color="warn"
+            class="full-width mat-elevation-z4">
+            Cancelar
+        </button>
+
+    </form>
+</div>

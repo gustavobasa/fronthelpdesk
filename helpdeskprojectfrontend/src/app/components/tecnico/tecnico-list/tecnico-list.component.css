@@ -1,0 +1,40 @@
+.container {
+    width: 100%;
+    margin: auto;
+    padding: 1rem;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+/* Adicionado para garantir que os inputs ocupem a tela toda, igual ao cliente */
+mat-form-field {
+    width: 100%;
+}
+
+.full-width {
+    width: 100%;
+}
+
+button {
+    margin-bottom: 2rem;
+    width: 100%;
+}
+
+/* Classes específicas do formulário mantidas para o layout dos checkboxes */
+.perfis {
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: center;
+}
+
+.margem {
+    margin: 0 1rem;
+}
