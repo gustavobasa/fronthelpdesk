@@ -1,66 +1,135 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule, FormControl, Validators } from '@angular/forms';
-import { RouterModule, Router } from '@angular/router';
+// Imports de Forms (necessários para FormControl)
+import { FormControl, Validators, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Router, RouterModule } from '@angular/router';
+
+// Imports Material (padronizados)
+import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
-import { MatButtonModule } from '@angular/material/button';
-import { ToastrService } from 'ngx-toastr';
+import { MatIconModule } from '@angular/material/icon';
 
-import { ChamadoDTO } from '../../../models/chamado';
-import { Prioridade, Status } from '../../../models/enums';
+// Serviços e Modelos (Ajuste os caminhos se necessário)
 import { ChamadoService } from '../../../services/chamado.service';
-import { TecnicoService } from '../../../services/tecnico.service';
 import { ClienteService } from '../../../services/cliente.service';
+import { TecnicoService } from '../../../services/tecnico.service';
+
+import { ToastrService } from 'ngx-toastr';
+import { ChamadoDTO } from '../../../models/chamado';
+import { Cliente } from '../../../models/cliente';
+import { Tecnico } from '../../../models/tecnico';
 
 
 @Component({
   selector: 'app-chamado-create',
   standalone: true,
   imports: [
-    CommonModule, FormsModule, ReactiveFormsModule, RouterModule,
-    MatFormFieldModule, MatInputModule, MatSelectModule, MatButtonModule
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule, // ESSENCIAL para FormControl
+    RouterModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+    MatIconModule
   ],
-  templateUrl: './chamado-create.component.html'
+  templateUrl: './chamado-create.component.html',
+  styleUrls: ['./chamado-create.component.css']
 })
 export class ChamadoCreateComponent implements OnInit {
-  chamado: ChamadoDTO = { titulo: '', observacoes: '', prioridade: Prioridade.BAIXA, status: Status.ABERTO, tecnico: 0, cliente: 0 };
-  nomeTecnico = new FormControl('');
-  nomeCliente = new FormControl('');
-  prioridadeControl = new FormControl(Prioridade.BAIXA, [Validators.required]);
-  statusControl = new FormControl(Status.ABERTO, [Validators.required]);
 
-  tecnicos: any[] = [];
-  clientes: any[] = [];
+  chamado: ChamadoDTO = {
+    prioridade: 0,
+    status: 0,
+    titulo: '',
+    observacoes: '',
+    tecnico: 0,
+    cliente: 0
+  };
+
+  clientes: Cliente[] = [];
+  tecnicos: Tecnico[] = [];
+
+
+  // PADRÃO: Definição dos FormControls para validação
+  titulo = new FormControl('', [Validators.required, Validators.minLength(5)]);
+  observacoes = new FormControl('', [Validators.required, Validators.minLength(10)]);
+  prioridade = new FormControl('', [Validators.required]);
+  status = new FormControl('', [Validators.required]);
+  tecnico = new FormControl('', [Validators.required]);
+  cliente = new FormControl('', [Validators.required]);
+
 
   constructor(
-    private service: ChamadoService,
-    private tecnicoService: TecnicoService,
+    private chamadoService: ChamadoService,
     private clienteService: ClienteService,
+    private tecnicoService: TecnicoService,
     private toastr: ToastrService,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit(): void {
-    this.tecnicoService.findAll().subscribe(res => this.tecnicos = res);
-    this.clienteService.findAll().subscribe(res => this.clientes = res);
+    this.findAllClientes();
+    this.findAllTecnicos();
   }
 
+  findAllClientes(): void {
+    this.clienteService.findAll().subscribe(res => {
+      this.clientes = res;
+    });
+  }
+
+  findAllTecnicos(): void {
+    this.tecnicoService.findAll().subscribe(res => {
+      this.tecnicos = res;
+    });
+  }
+
+
+  // PADRÃO: Método para verificar se todos os FormControls são válidos
   validaCampos(): boolean {
-    return !!this.chamado.titulo && !!this.chamado.tecnico && !!this.chamado.cliente;
+    return this.titulo.valid &&
+      this.observacoes.valid &&
+      this.prioridade.valid &&
+      this.status.valid &&
+      this.tecnico.valid &&
+      this.cliente.valid;
   }
 
+  // PADRÃO: Implementação do método de criação com Toastr
   create(): void {
-    if (!this.validaCampos()) return;
-    this.service.create(this.chamado).subscribe({
+    // 1. Antes de enviar, move os valores dos FormControls para o DTO
+    this.chamado.titulo = this.titulo.value || '';
+    this.chamado.observacoes = this.observacoes.value || '';
+    // Converte os valores dos selects para número antes de enviar ao DTO
+    this.chamado.prioridade = Number(this.prioridade.value);
+    this.chamado.status = Number(this.status.value);
+    this.chamado.tecnico = Number(this.tecnico.value);
+    this.chamado.cliente = Number(this.cliente.value);
+
+    if (!this.validaCampos()) {
+      this.toastr.error('Preencha todos os campos obrigatórios!', 'Validação');
+      return;
+    }
+
+    this.chamadoService.create(this.chamado).subscribe({
       next: () => {
-        this.toastr.success('Chamado criado com sucesso', 'Cadastro');
-        this.router.navigate(['/main/chamado']);
+        this.toastr.success('Chamado aberto com sucesso', 'Criação');
+        this.router.navigate(['main/chamado']);
       },
-      error: (err) => {
-        console.error(err);
-        this.toastr.error('Erro ao criar chamado');
+      error: (ex) => {
+        console.error(ex);
+        if (ex.error.errors) {
+          // PADRÃO: Exibição de erros de validação do Backend
+          ex.error.errors.forEach((element: any) => {
+            this.toastr.error(element.message);
+          });
+        } else {
+          this.toastr.error(ex.error.message);
+        }
       }
     });
   }

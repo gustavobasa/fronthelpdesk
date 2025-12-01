@@ -1,0 +1,84 @@
+/* Padroniza a largura para 70rem (1120px) e centraliza */
+.container {
+    width: 70rem; 
+    margin: 2rem auto; 
+    padding: 2rem;
+    background-color: #fff;
+    border-radius: 10px;
+}
+
+/* Título e Conteúdo */
+.full-width {
+    width: 100%;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+}
+
+/* === Estilos para Colunas === */
+
+/* Contêiner de Linha para agrupar campos lado a lado */
+.form-row {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 1rem;
+}
+
+/* Define que cada campo ocupe metade da largura da linha */
+.column-half {
+    flex: 1; /* Ocupa o espaço disponível igualmente */
+}
+
+/* === Estilos de Botões === */
+
+.button-container {
+    display: flex;
+    justify-content: flex-end; /* Alinha os botões à direita (padrão comum em formulários) */
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+/* Garante que os botões de ação final fiquem com um tamanho padrão */
+.button-container button {
+    width: 150px; 
+}
+
+/* Garante que os form-fields tenham margem quando estão em coluna (se necessário) */
+.mat-form-field {
+    margin-bottom: 0.5rem;
+}
+
+/* ----------------------------------------------------- */
+/* FORÇA O FUNDO BRANCO USANDO :HOST PARA ESPECIFICIDADE */
+/* ----------------------------------------------------- */
+
+:host ::ng-deep .mat-form-field-appearance-outline .mat-form-field-flex,
+:host ::ng-deep .mat-form-field-appearance-fill .mat-form-field-flex {
+    background-color: white !important;
+}
+
+:host ::ng-deep .mat-input-element {
+    background-color: white !important; /* Fundo branco garantido */
+    color: #000 !important; /* Força a cor do texto digitado para preto */
+}
+
+:host ::ng-deep .mat-form-field-label {
+    color: rgba(0, 0, 0, 0.7) !important; /* Garante que o rótulo seja legível */
+}
+
+/* Nota: O uso de ::ng-deep é geralmente desaconselhado, mas é o que funciona 
+   em casos extremos de conflito de temas em versões mais antigas do Angular.
+   Se a sua versão for mais recente, o seletor :host() sozinho deve funcionar. */
+
+:host {
+    /* Método moderno: sobrescreve variáveis CSS diretamente no host do componente */
+    --mat-form-field-container-background-color: #fff;
+    --mat-form-field-input-text-color: #000;
+}
